@@ -28,7 +28,7 @@ const Page = () => {
       setMessage(errorData.message);
     } else {
       setMessage("success");
-      router.push("/");
+      router.push("/login");
     }
   };
 

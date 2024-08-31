@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 export interface UserDB extends mongoose.Document {
   username: string;
   password: string;
+  refreshToken: string;
 }
 
 const UserSchema = new mongoose.Schema<UserDB>({
@@ -14,6 +15,9 @@ const UserSchema = new mongoose.Schema<UserDB>({
   password: {
     type: String,
     required: [true, "Please provide a password."]
+  },
+  refreshToken: {
+    type: String
   }
 });
 

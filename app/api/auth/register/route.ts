@@ -1,6 +1,7 @@
 import UserSchema from "@/models/User";
 import dbConnect from "@/lib/dbConnect";
 import { cookies } from "next/headers";
+import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
   const cookieStore = cookies();
@@ -8,14 +9,22 @@ export async function POST(request: Request) {
   await dbConnect();
 
   const data = await request.json();
+  const { username, password } = data;
 
+  if (!username || !password)
+    return new Response(
+      JSON.stringify({
+        message: "Both username and password are required!"
+      }),
+      { status: 400 }
+    );
+
+  const salt = 10;
   try {
     const newUser = await UserSchema.create({
-      username: data.username,
-      password: data.password
+      username: username,
+      password: await bcrypt.hash(password, salt)
     });
-
-    cookieStore.set("good", "true");
   } catch (error) {
     return new Response(
       JSON.stringify({
@@ -26,5 +35,8 @@ export async function POST(request: Request) {
       }
     );
   }
+
+  cookieStore.set("test", "yes");
+
   return Response.json("success", { status: 200 });
 }
