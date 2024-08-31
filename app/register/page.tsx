@@ -11,7 +11,7 @@ const Page = () => {
   return (
     <div className="w-full h-full flex justify-center items-center">
       <form
-        className="bg-white rounded-md p-10 flex flex-col gap-10 text-black"
+        className="  bg-zinc-800 rounded-md p-10 flex flex-col gap-10"
         action={handleSubmit}
       >
         <h1 className=" justify-center text-4xl font-bold flex">Register</h1>
@@ -20,20 +20,20 @@ const Page = () => {
           <input
             type="text"
             placeholder="Enter Username"
-            className="placeholder:opacity-90 px-2 py-3 outline-0 rounded-md border-b-2 focus:shadow-lg transition-all duration-300"
+            className="placeholder:opacity-90 px-2 py-3 outline-0 rounded-md  transition-all duration-300 bg-zinc-700"
           />
           <input
             type="text"
             placeholder="Enter Password"
-            className="placeholder:opacity-90 px-2 py-3 outline-0 rounded-md border-b-2 focus:shadow-lg transition-all duration-300"
+            className="placeholder:opacity-90 px-2 py-3 outline-0 rounded-md  transition-all duration-300 bg-zinc-700"
           />
         </section>
 
         <button
-          className="bg-black text-white rounded-md py-2"
+          className="bg-zinc-700 text-white rounded-md py-2"
           type="submit"
         >
-          Register
+          Login
         </button>
 
         <h3 className="text-xs text-center hover:scale-105 transition-all duration-150 ">
