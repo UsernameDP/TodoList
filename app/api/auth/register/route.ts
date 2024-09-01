@@ -4,8 +4,6 @@ import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
-  const cookieStore = cookies();
-
   await dbConnect();
 
   const data = await request.json();
@@ -35,8 +33,6 @@ export async function POST(request: Request) {
       }
     );
   }
-
-  cookieStore.set("test", "yes");
 
   return Response.json("success", { status: 200 });
 }

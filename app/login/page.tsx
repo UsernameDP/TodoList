@@ -23,11 +23,12 @@ const Page = () => {
       method: "POST",
       body: JSON.stringify(user)
     });
+    const data = await response.json();
 
     if (!response.ok) {
-      const errorData = await response.json();
-      setMessage(errorData.message);
+      setMessage(data.message);
     } else {
+      console.log(data.accessToken);
       setMessage("success");
       router.push("/");
     }
@@ -78,7 +79,7 @@ const Page = () => {
         )}
 
         <h3 className="text-xs text-center hover:scale-105 transition-all duration-150 ">
-          <a href="/login">Login Here</a>
+          <a href="/register">Register Here</a>
         </h3>
       </form>
     </div>
