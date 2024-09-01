@@ -1,7 +1,11 @@
 import UserSchema from "@/models/User";
 import dbConnect from "@/lib/dbConnect";
 import { cookies } from "next/headers";
-import { generateAccessToken, getREFRESH_TOKEN_SECRET } from "@/lib/auth";
+import {
+  generateAccessToken,
+  getREFRESH_TOKEN_SECRET,
+  verifyJWT
+} from "@/lib/auth";
 import jwt from "jsonwebtoken";
 
 export async function POST(request: Request) {
@@ -17,7 +21,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const results = jwt.verify(refreshToken, getREFRESH_TOKEN_SECRET());
+    const results = verifyJWT(refreshToken);
 
     const { username } = results as User; //decoded username
     const foundUser = await UserSchema.findOne({ username: username });

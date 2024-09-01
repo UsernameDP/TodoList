@@ -39,6 +39,6 @@ export const generateAccessToken = (user: User) => {
   });
 };
 
-export const verifyJWT = async (refreshToken: string) => {
+export const verifyJWT = (refreshToken: string) => {
   return jwt.verify(refreshToken, getREFRESH_TOKEN_SECRET());
 };
